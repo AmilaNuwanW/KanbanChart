@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { kanbanData } from '../datasource';
 
 @Component({
     selector: 'app-task-form',
     templateUrl: './task-form.component.html',
-    styleUrls: ['./task-form.component.css']
+    styleUrls: ['./task-form.component.css'],
 })
 export class TaskFormComponent implements OnInit {
   taskForm: FormGroup = new FormGroup({});

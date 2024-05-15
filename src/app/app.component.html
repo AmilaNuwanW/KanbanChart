@@ -1,4 +1,4 @@
-* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content below * * * * * * * * * * * -->
 <!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * -->
 <!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * -->
@@ -332,13 +332,24 @@
 <!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
-<button (click)="toggleForm()">Add New Task</button>
+<!-- <button (click)="toggleForm()">Add New Task</button>
 <div *ngIf="showForm">
   <form #taskForm="ngForm" (ngSubmit)="addTask(taskForm.value)">
-    <!-- form fields here -->
+   
   </form>
 </div>
 <ejs-kanban keyField='Status' [dataSource]='data' [cardSettings]='cardSettings' [swimlaneSettings]='swimlaneSettings'>
-  <!-- kanban columns here -->
-</ejs-kanban>
-<router-outlet />
+ 
+</ejs-kanban> -->
+<button (click)="addNewTask()">Add New Task</button>
+    <ejs-kanban keyField='Status' [dataSource]='data' [cardSettings]='cardSettings' [swimlaneSettings]='swimlaneSettings'>
+      <e-columns>
+        <e-column headerText='To do' keyField='Open'></e-column>
+        <e-column headerText='In Progress' keyField='InProgress'></e-column>
+        <e-column headerText='Testing' keyField='Testing'></e-column>
+        <e-column headerText='Done' keyField='Close'></e-column>
+      </e-columns>
+    </ejs-kanban>
+    <app-task-form *ngIf="showForm"></app-task-form> 
+    <router-outlet></router-outlet>
+
