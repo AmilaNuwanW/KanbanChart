@@ -74,7 +74,7 @@ standalone: true,
         <e-column headerText='Done' keyField='Close'></e-column>
       </e-columns>
     </ejs-kanban>
-    
+    <app-task-form *ngIf="showForm"></app-task-form>
   `
 })
 export class AppComponent {
