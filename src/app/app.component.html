@@ -341,7 +341,17 @@
 <ejs-kanban keyField='Status' [dataSource]='data' [cardSettings]='cardSettings' [swimlaneSettings]='swimlaneSettings'>
  
 </ejs-kanban> -->
-<button (click)="addNewTask()">Add New Task</button>
+
+
+
+
+
+
+
+
+
+
+<!-- <button (click)="addNewTask()">Add New Task</button>
     <ejs-kanban keyField='Status' [dataSource]='data' [cardSettings]='cardSettings' [swimlaneSettings]='swimlaneSettings'>
       <e-columns>
         <e-column headerText='To do' keyField='Open'></e-column>
@@ -351,5 +361,23 @@
       </e-columns>
     </ejs-kanban>
     <app-task-form *ngIf="showForm"></app-task-form> 
+    <router-outlet></router-outlet> -->
+
+
+    
+    <ejs-kanban keyField='status' [dataSource]='data' [cardSettings]='cardSettings' [swimlaneSettings]='swimlaneSettings' (actionBegin)="onActionBegin($event)">
+      <e-columns>
+        <e-column headerText='To do' keyField='Open'></e-column>
+        <e-column headerText='In Progress' keyField='InProgress'></e-column>
+        <e-column headerText='Testing' keyField='Testing'></e-column>
+        <e-column headerText='Done' keyField='Close'></e-column>
+      </e-columns>
+    </ejs-kanban>
+    <app-task-form *ngIf="showForm"></app-task-form>
+    <button (click)="addNewTask()" style="margin-top: 20px; background-color: #007bff; color: white; border: none; padding: 5px 10px; font-size: 10px; cursor: pointer;">
+      Add New Task
+    </button>
     <router-outlet></router-outlet>
 
+
+    

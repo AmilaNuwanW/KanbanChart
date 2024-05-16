@@ -1,10 +1,20 @@
-<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
-    <label for="id">Id:</label>
-    <input type="number" id="id" formControlName="id" required>
-    <label for="status">Status:</label>
-    <input type="text" id="status" formControlName="status" required>
-    <label for="summary">Summary:</label>
-    <input type="text" id="summary" formControlName="summary" required>
-    <!-- Add other fields as needed -->
-    <button type="submit">Submit</button>
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()" class="task-form">
+    <div class="form-group">
+        <label for="id">Id:</label>
+        <input type="text" id="id" formControlName="id" required>
+    </div>
+    <div class="form-group">
+        <label for="assignee">Assignee:</label>
+        <input type="text" id="assignee" formControlName="assignee" required>
+    </div>
+    <div class="form-group">
+        <label for="status">Status:</label>
+        <input type="text" id="status" formControlName="status" required>
+    </div>
+    <div class="form-group">
+        <label for="summary">Summary:</label>
+        <input type="text" id="summary" formControlName="summary" required>
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation,EventEmitter,Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { kanbanData } from '../datasource';
 
@@ -8,13 +8,16 @@ import { kanbanData } from '../datasource';
     styleUrls: ['./task-form.component.css'],
 })
 export class TaskFormComponent implements OnInit {
+    @Output() formSubmitted = new EventEmitter<void>();
   taskForm: FormGroup = new FormGroup({});
 
-    constructor(private formBuilder: FormBuilder) { }
+    constructor(private formBuilder: FormBuilder
+    ) { }
 
     ngOnInit() {
         this.taskForm = this.formBuilder.group({
             id: ['', Validators.required],
+            assignee: ['', Validators.required],
             status: ['', Validators.required],
             summary: ['', Validators.required],
             // Add other form controls as needed
@@ -25,9 +28,18 @@ export class TaskFormComponent implements OnInit {
         if (this.taskForm.valid) {
             const formData = this.taskForm.value;
             // Save the form data to the kanbanData array
-            kanbanData.push(formData);
+            // kanbanData.push(formData);
+            this.saveToLocalStorage(formData);
+            console.log('submitted');
             // Optionally, you can reset the form after submission
             this.taskForm.reset();
         }
     }
+    saveToLocalStorage(data: any) {
+        let kanbanData = JSON.parse(localStorage.getItem('kanbanData') || '[]');
+        kanbanData.push(data);
+        localStorage.setItem('kanbanData', JSON.stringify(kanbanData));
+      }
+
+    
 }

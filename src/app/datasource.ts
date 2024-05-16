@@ -18,6 +18,15 @@ export const kanbanData = [
       'Color': '#66B8D9'
     },
     {
+      'Id': 2,
+      'Status': 'Open',
+      'Summary': 'Fix the hardware issue in the server room',
+      'Assignee': 'Andrew',
+      'Tags': 'Hardware, Server',
+      'Priority': 'Critical',
+      'Color': '#66B8D9'
+    },
+    {
       'Id': 3,
       'Status': 'Testing',
       'Summary': 'Testing of hardware issue in the server room',
