@@ -1,88 +1,4 @@
-// import { KanbanModule } from '@syncfusion/ej2-angular-kanban'
-
-
-
-// import { Component } from '@angular/core';
-// import { CardSettingsModel, SwimlaneSettingsModel } from '@syncfusion/ej2-angular-kanban';
-// import { kanbanData } from './datasource';
-
-// @Component({
-// imports: [
-        
-//         KanbanModule
-//     ],
-
-
-// standalone: true,
-//   selector: 'app-root',
-//   template: `<button (click)="addNewTask()">Add New Task</button>
-//             <ejs-kanban keyField='Status' [dataSource]='data' [cardSettings]='cardSettings' [swimlaneSettings]='swimlaneSettings'>
-//                 <e-columns>
-//                   <e-column headerText='To do' keyField='Open'></e-column>
-//                   <e-column headerText='In Progress' keyField='InProgress'></e-column>
-//                   <e-column headerText='Testing' keyField='Testing'></e-column>
-//                   <e-column headerText='Done' keyField='Close'></e-column>
-//                 </e-columns>
-//             </ejs-kanban>`
-// })
-// export class AppComponent {
-//     public data: Object[] = kanbanData;
-//     public cardSettings: CardSettingsModel = {
-//         contentField: 'Summary',
-//         headerField: 'Id'
-//     };
-//     public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' };
-//     addNewTask() {
-//         // Logic to add a new task
-//         console.log('Add new task button clicked');
-//     }
-// }
-
-
-
-
-
-
-
-
-// import { NgModule } from '@angular/core'
-// import { BrowserModule } from '@angular/platform-browser'
-// import { KanbanModule } from '@syncfusion/ej2-angular-kanban'
-
-
-
-// import { Component } from '@angular/core';
-// import { CardSettingsModel, SwimlaneSettingsModel } from '@syncfusion/ej2-angular-kanban';
-// import { kanbanData } from './datasource';
-
-// @Component({
-//   selector: 'app-root',
-//   templateUrl: './app.component.html',
-//   styleUrl: './app.component.css',
-// })
-// export class AppComponent {
-//     public data: Object[] = kanbanData;
-//     public cardSettings: CardSettingsModel = {
-//         contentField: 'Summary',
-//         headerField: 'Id'
-//     };
-//     public swimlaneSettings: SwimlaneSettingsModel = { keyField: 'Assignee' };
-//     public showForm: boolean = false;
-//     addNewTask() {
-//       this.showForm = true;
-//                console.log('Add new task button clicked');
-//           }
-// }
-
-
-
-
-
-
-
-
 import { Component, OnInit } from '@angular/core';
-import { DragEventArgs } from '@syncfusion/ej2-angular-kanban';
 
 @Component({
   selector: 'app-root',
@@ -121,21 +37,24 @@ export class AppComponent implements OnInit {
     localStorage.setItem('kanbanData', JSON.stringify(this.data));
   }
 
-
-  onActionBegin(args: any): void {
-    if (args.requestType === 'cardDragStop') {
-      const draggedItem = args.data[0];
-      console.log(draggedItem);
-      const card = this.data.find(c => c.id === draggedItem.id);
-      console.log(draggedItem.id);
-      if (card) {
-        card.assignee = draggedItem.assignee;
-        card.status = draggedItem.status;
-        card.summary = draggedItem.summary;
-        this.saveToLocalStorage();
-      }
+  onCardDragStop(args: any) {
+    // Find the index of the card that was moved
+    const cardIndex = this.data.findIndex(card => card.id === args.data.id);
+  
+    // Check if the card was found
+    if (cardIndex!== -1) {
+      // Update the card's status based on the target column
+      const newStatus = args.targetKey; // Assuming 'targetKey' contains the new status
+      this.data[cardIndex].status = newStatus;
+  
+      // Save the updated data to local storage
+      this.saveToLocalStorage();
+    } else {
+      console.error('Card not found:', args.data.id);
     }
   }
+  
+
 }
 
 

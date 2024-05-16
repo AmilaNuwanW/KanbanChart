@@ -1,7 +1,5 @@
-import { Component, OnInit, ViewEncapsulation,EventEmitter,Output } from '@angular/core';
+import { Component, OnInit,EventEmitter,Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { kanbanData } from '../datasource';
-
 @Component({
     selector: 'app-task-form',
     templateUrl: './task-form.component.html',
@@ -10,6 +8,8 @@ import { kanbanData } from '../datasource';
 export class TaskFormComponent implements OnInit {
     @Output() formSubmitted = new EventEmitter<void>();
   taskForm: FormGroup = new FormGroup({});
+  statusOptions: string[] = ['To do', 'In Progress', 'Testing', 'Done'];
+
 
     constructor(private formBuilder: FormBuilder
     ) { }
@@ -20,7 +20,6 @@ export class TaskFormComponent implements OnInit {
             assignee: ['', Validators.required],
             status: ['', Validators.required],
             summary: ['', Validators.required],
-            // Add other form controls as needed
         });
     }
 
