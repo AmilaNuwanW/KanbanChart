@@ -1,4 +1,39 @@
-<ejs-kanban keyField='status' [dataSource]='data' [cardSettings]='cardSettings' [swimlaneSettings]='swimlaneSettings' (dragStop)="onCardDragStop($event)">
+<ejs-kanban keyField='status' [dataSource]='data' [cardSettings]='cardSettings' [swimlaneSettings]='swimlaneSettings'  (submit)="saveToLocalStorage($event)">
+      <e-columns>
+        <e-column headerText='To do' keyField='To do'></e-column>
+        <e-column headerText='In Progress' keyField='In Progress'></e-column>
+        <e-column headerText='Testing' keyField='Testing'></e-column>
+        <e-column headerText='Done' keyField='Done'></e-column>
+      </e-columns>
+      <e-column>
+        <ng-template #cardSettingsTemplate let-data>
+          <div class="e-card-wrapper">
+            <span>{{data.id}}</span><br>
+            <span>{{data.summary}}</span><br>
+            <button (click)="updateTask(data.id)">Update</button>
+          </div>
+        </ng-template>
+      </e-column>
+    </ejs-kanban>
+    <app-task-form *ngIf="showForm"></app-task-form>
+    <button (click)="addNewTask()" style="margin-top: 20px; background-color: #007bff; color: white; border: none; padding: 5px 10px; font-size: 10px; cursor: pointer;">
+      Add New Task
+    </button>
+    <router-outlet></router-outlet>
+
+    <!-- <ejs-kanban [dataSource]='data' keyField='status' [cardSettings]='cardSettings' [swimlaneSettings]='swimlaneSettings'>
+      <ng-template #template let-data>
+        <div class="card-template">
+          <div class="card-header">
+            {{ data.id }}: {{ data.summary }}
+          </div>
+          <div class="card-content">
+            <p>Assignee: {{ data.assignee }}</p>
+            <p>Status: {{ data.status }}</p>
+            <button (click)="handleButtonClick(data)" style="margin-top: 10px; background-color: #007bff; color: white; border: none; padding: 5px 10px; font-size: 10px; cursor: pointer;">Button</button>
+          </div>
+        </div>
+      </ng-template>
       <e-columns>
         <e-column headerText='To do' keyField='To do'></e-column>
         <e-column headerText='In Progress' keyField='In Progress'></e-column>
@@ -10,7 +45,8 @@
     <button (click)="addNewTask()" style="margin-top: 20px; background-color: #007bff; color: white; border: none; padding: 5px 10px; font-size: 10px; cursor: pointer;">
       Add New Task
     </button>
-    <router-outlet></router-outlet>
-
+    <router-outlet></router-outlet> -->
+    
+    
 
     

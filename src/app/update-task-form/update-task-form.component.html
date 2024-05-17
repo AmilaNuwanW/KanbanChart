@@ -1,0 +1,9 @@
+<form (submit)="onSubmit($event)">
+    <label for="summary">Summary:</label>
+    <input type="text" [(ngModel)]="task.summary" name="summary" required>
+  
+    <!-- Add other fields as needed -->
+  
+    <button type="submit">Update Task</button>
+  </form>
+  
