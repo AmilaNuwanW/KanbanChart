@@ -76,7 +76,7 @@ updateTaskForm: boolean = false;
   updateTask(id: any) {
     // Find the task in the data array with the matching ID
     const taskIndex = this.data.findIndex(task => task.id === id);
-    console.log('update');
+    console.log('update'+id);
   
     if (taskIndex!== -1) {
       console.log('update');
@@ -88,10 +88,22 @@ updateTaskForm: boolean = false;
     }
   }
 
-
+  deleteTask(id: any) {
+    // Retrieve the data from local storage
+    let data = JSON.parse(localStorage.getItem('kanbanData') || '[]');
   
+    // Find the index of the task with the given id
+    const index = data.findIndex((task: any) => task.id === id);
   
-
+    // If the task is found, remove it from the array
+    if (index !== -1) {
+      data.splice(index, 1);
+  
+      // Save the updated data back to local storage
+      localStorage.setItem('kanbanData', JSON.stringify(data));
+    }
+    window.location.reload();
+  }
 }
 
 

@@ -1,11 +1,39 @@
-.popup-form {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background-color: white;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-  }
-  
+.task-form {
+  background-color: #f5f5f5; /* Light gray background color */
+  border: 1px solid #ccc; /* Light gray border */
+  padding: 20px; /* Add some padding inside the form */
+  border-radius: 5px; /* Rounded corners for the form */
+  max-width: 400px; /* Limit the form width */
+  margin: 0 auto; /* Center the form horizontally */
+}
+
+.form-group {
+  margin-bottom: 15px; /* Add space between form groups */
+}
+
+label {
+  display: block; /* Display labels as block elements */
+  font-weight: bold; /* Bold text for labels */
+  margin-bottom: 5px; /* Add space below labels */
+}
+
+input[type="text"] {
+  width: 100%; /* Full width input fields */
+  padding: 5px; /* Add some padding inside the input fields */
+  border: 1px solid #ccc; /* Light gray border for input fields */
+  border-radius: 3px; /* Rounded corners for input fields */
+  box-sizing: border-box; /* Include padding and border in input width */
+}
+
+button {
+  padding: 5px 10px; /* Add padding inside the button */
+  background-color: #007bff; /* Blue background color for the button */
+  color: #fff; /* White text color for the button */
+  border: none; /* Remove border from the button */
+  border-radius: 3px; /* Rounded corners for the button */
+  cursor: pointer; /* Show pointer cursor on hover */
+}
+
+button:hover {
+  background-color: #0056b3; /* Darker blue background color on hover */
+}

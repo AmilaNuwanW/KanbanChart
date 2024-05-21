@@ -11,11 +11,13 @@
             <span>{{data.id}}</span><br>
             <span>{{data.summary}}</span><br>
             <button (click)="updateTask(data.id)">Update</button>
+            <button (click)="deleteTask(data.id)">Delete</button>
           </div>
         </ng-template>
       </e-column>
     </ejs-kanban>
     <app-task-form *ngIf="showForm"></app-task-form>
+    <app-update-task-form *ngIf="updateTaskForm" [currentTask]="currentTask"></app-update-task-form>
     <button (click)="addNewTask()" style="margin-top: 20px; background-color: #007bff; color: white; border: none; padding: 5px 10px; font-size: 10px; cursor: pointer;">
       Add New Task
     </button>

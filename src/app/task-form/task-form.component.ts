@@ -30,8 +30,10 @@ export class TaskFormComponent implements OnInit {
             // kanbanData.push(formData);
             this.saveToLocalStorage(formData);
             console.log('submitted');
+            this.formSubmitted.emit();
             // Optionally, you can reset the form after submission
             this.taskForm.reset();
+            window.location.reload();
         }
     }
     saveToLocalStorage(data: any) {
